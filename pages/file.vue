@@ -1,8 +1,11 @@
 <script setup lang="ts">
-
+import { useAuthStore } from '@/stores/auth';
+definePageMeta({
+    middleware: ["auth"]
+})
 </script>
 <template>
-  <div class="min-h-screen bg-gray-50 flex flex-col justify-center items-center px-4">
+  <div class=" flex flex-col justify-center items-center px-4">
     <div class="max-w-3xl w-full text-center space-y-8">
       <div class="flex justify-center">
         <svg class="h-24 w-24 text-blue-500 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">

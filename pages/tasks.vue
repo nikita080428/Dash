@@ -1,8 +1,31 @@
 <script setup lang="ts">
+import { useAuthStore } from '@/stores/auth';
 
+definePageMeta({
+    middleware: ["auth"]
+})
+
+const authStore = useAuthStore()
+let tasks = ref([]); 
+
+
+watchEffect(async () => {
+  try {
+    const fetchedTasks = await $fetch("/api/allTask", {
+      method: 'POST',
+      body: {
+        taskIds: authStore.getInfo().tasks
+      }
+    });
+    tasks.value = fetchedTasks; 
+  } catch (error) {
+    console.log(error)
+  }
+});
 </script>
 <template>
- <header class="flex items-center justify-between mb-8 px-4 py-3 bg-white shadow-sm">
+  <div class="h-screen">
+     <header class="flex items-center justify-between mb-8 px-4 py-3 bg-white shadow-sm">
     <h2 class="text-2xl font-semibold text-gray-800">Доска задач</h2>
     
     <div class="relative flex items-center gap-3">
@@ -20,9 +43,10 @@
     <h3 class="text-lg font-medium text-gray-700">Недавнее</h3>
   </div>
 
-  <section class="grid grid-cols-3 gap-6 px-4">
-    <CardElement />
-    <CardElement />
-    <CardElement />
+  <section class="grid grid-cols-3 gap-4 px-4">
+    <CreatElement></CreatElement>
+    <CardElement v-for="{_id, title, category, img, dueDate} in tasks" :_id :title :category :img :dueDate  />
   </section>
+  </div>
+
 </template>

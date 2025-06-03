@@ -1,3 +1,19 @@
+<script setup>
+
+const props = defineProps({
+  tasks: Array
+})
+
+const activityData = [ // не реализовал 
+  { label: 'Пн', value: 8 },
+  { label: 'Вт', value: 5 },
+  { label: 'Ср', value: 6 },
+  { label: 'Чт', value: 9 },
+  { label: 'Пт', value: 7 },
+  { label: 'Сб', value: 4 },
+  { label: 'Вс', value: 2 }
+];
+</script>
 <template>
   <div class="container mx-auto p-6">
 
@@ -5,8 +21,8 @@
       <div class="bg-white p-6 rounded-xl shadow-sm ">
         <div class="flex items-center justify-between">
           <div>
-            <p class="text-sm text-gray-500 mb-1">Выполнено задач</p>
-            <p class="text-3xl font-bold text-gray-800">24/36</p>
+            <p class="text-sm text-gray-500 mb-1">Всего задач</p>
+            <p class="text-3xl font-bold text-gray-800">{{ tasks.length}}</p>
           </div>
           <div class="p-3 bg-green-100 rounded-lg">
             <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -16,7 +32,7 @@
         </div>
         <div class="mt-4">
           <div class="h-1 bg-gray-200 rounded-full">
-            <div class="h-1 bg-green-600 rounded-full w-2/3"></div>
+            <div class="h-1 bg-green-600 rounded-full w-3"></div>
           </div>
         </div>
       </div>
@@ -37,15 +53,3 @@
 
   </div>
 </template>
-
-<script setup>
-const activityData = [
-  { label: 'Пн', value: 8 },
-  { label: 'Вт', value: 5 },
-  { label: 'Ср', value: 6 },
-  { label: 'Чт', value: 9 },
-  { label: 'Пт', value: 7 },
-  { label: 'Сб', value: 4 },
-  { label: 'Вс', value: 2 }
-];
-</script>

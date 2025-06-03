@@ -13,7 +13,18 @@ export default defineNuxtConfig({
     }
   },
 
-  modules: ['@nuxtjs/tailwindcss'],
+  modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', 'pinia-plugin-persistedstate/nuxt'],
 
-  css: ['~/assets/css/main.css']
+  css: ['~/assets/css/main.css'],
+
+  pinia: {
+    storesDirs: ['./stores/', './custom-folder/stores/'],
+
+  },
+  nitro: {
+    experimental: {
+      websocket: true
+    }
+  },
+  
 })
